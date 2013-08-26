@@ -1,5 +1,5 @@
 /*
- * KT - 
+ * KT - Light and Fast JavaScript Template Engine
  * Copyright (C) 2013 aaron.xiao
  * Author: aaron.xiao <admin@veryos.com>
  * Version: 1.0.0
