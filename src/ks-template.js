@@ -250,16 +250,18 @@
 				text += 'var ' + i + '=' + this.dataRef + '.' + i + ';';
 			}
 
-			body = 'try{' + body + '}catch(ex){var e=new Error();' +
-				'e.message=ex.message;e.pos=' + this.posRef + ';throw e;}';
+			// Standard compile output
+			this.output = '"use strict";' + text + 'try{' + body +
+				'}catch(ex){var e=new Error();e.message=ex.message;e.pos=' +
+				this.posRef + ';throw e;}return ' + this.outRef + ';';
+			// For debug and locate error line/position
 			body = '"use strict";' + text + body + 'return ' + this.outRef + ';';
 
-			this.output = body;
-
 			try {
-				return new Function( 'data,lang,filters', body );
+				return new Function( 'data,lang,filters', this.output );
 			} catch (e) {
-				var token = body.split( new RegExp('\\' + this.posRef + '=\\d+;\\n') ),
+				var reg = new RegExp( '\\' + this.posRef + '=\\d+;\\n' ),
+					token = body.split( reg ),
 					pos = 1, count = token.length;
 
 	    		while ( pos < count ) {
@@ -270,7 +272,7 @@
 	    			}
 	    		}
 
-				this.die( pos, e.message );
+				this.die( pos - 1, e.message );
 			}
 		},
 
