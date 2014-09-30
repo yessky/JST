@@ -5,8 +5,8 @@ light and fast javascript template engine
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/yessky/ks-template/master/dist/template.js
-[max]: https://raw.github.com/yessky/ks-template/master/dist/template.js
+[min]: https://raw.github.com/yessky/ks-template/master/src/ks-template.js
+[max]: https://raw.github.com/yessky/ks-template/master/src/ks-template.js
 
 In your web page:
 
