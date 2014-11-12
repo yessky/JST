@@ -1,19 +1,28 @@
 {
-  "name": "ks-template",
-  "version": "0.0.0-ignored",
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "scripts": {
-    "test": "grunt qunit"
-  },
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-qunit": "~0.1.1",
-    "grunt-contrib-concat": "~0.1.2",
-    "grunt-contrib-uglify": "~0.1.1",
-    "grunt-contrib-watch": "~0.2.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt": "~0.4.1"
-  }
+	"name": "ks-template",
+	"description": "a light and fast javascript template engine",
+	"version": "1.0.0",
+	"author": "aaron.xiao <admin@veryos.com>",
+	"homepage": "http://veryos.com/",
+	"license": "MIT",
+	"keywords": [
+		"javascript"
+		, "template"
+		, "engine"
+	],
+	"repository": {
+		"type": "git"
+		, "url": "https://github.com/yessky/ks-template.git"
+	},
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"devDependencies": {
+		"gulp": "^3.8.8"
+		, "gulp-jshint": "^1.8.6"
+		, "gulp-rename": "^1.2.0"
+		, "gulp-util": "^3.0.1"
+		, "should": "^4.1.0"
+		, "uglify-js": "^2.4.15"
+	}
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script id="t-2" type="text/template">
+	<%
+	for (i = 0, l = options.length; i < l; i++ ) { %>
+		<input type="text" value="<%=options[i].label%>" /><% if (options[i].a) {%>
+		required<%}%><br/>
+	<% } %>
+</script>
+<script id="t-3" type="text/template">
+	<h2 title="customize 'twice' filter, text will be repeated once"><%=head:twice%></h2>
+	<form>
+	<div class="splitter">========== inclue other template ===========</div>
+	<% #include "t-2", props  %>
+	<div class="splitter">========== end include ===================</div>
+	</form>
+	<h1 class="abc"><%=title:escape%></h1>
+	<ul>
+	    <%
+	    var def123="def123";
+	    bbs=789;
+	    //window.alert(exports);
+	    //this.log('<i>abc</i>');
+	    for(var i = 0, l = list.length; i < l; i ++) {
+	    	if (i % 2) {
+	    %>
+	    <li><%=i + 1%> ：<%=list[i]%> - even</li>
+	    <% } else { %>
+	    <li><%=i + 1%> ：<%=list[i]:bold%> - odd</li>
+	    <% } %>
+	    <%}%>
+	</ul>
+</script>
+<script type="text/javascript" src="ks-template.js"></script>
+<script type="text/javascript">
+	JST.cache('t-1', 'hello <%=name%>');
+	JST.cache('t-2', document.getElementById('t-2').innerHTML);
+	JST.cache('t-3', document.getElementById('t-3').innerHTML);
+	JST.filter('twice', function(val) {
+		return val + val;
+	});
+	var data = {
+	    title: '标签"&<>',
+	    list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他'],
+	    head: 'blabla...',
+	    props: {
+	    	options: [{
+	    		label: 'first name',
+	    		a: true
+	    	}, {
+	    		label: 'last name',
+	    		a: false
+	    	}, {
+	    		label: 'school name',
+	    		a: true
+	    	}]
+	    }
+	};
+</script>
+</body>
+</html>
