@@ -1,11 +1,4 @@
-/*
- * JST - Light and Fast JavaScript Template Engine
- * Copyright (C) 2013 aaron.xiao
- * Author: aaron.xiao <admin@veryos.com>
- * Version: 1.0.0
- * Release: 2013/08/26
- *\/ License: MIT LICENSE
- */
+                                                                                                                                                                                                           
 (function( global ) {
 	var JST = {}
 
@@ -22,13 +15,13 @@
 			                                                                     +
 			                                             +
 
-			// reserved
+			            
 			                                                                     +
 			                                                                +
 			                                                                    +
 			                             +
 
-			// ECMA 5 - use strict
+			                       
 			                       +
 
 			            
@@ -38,20 +31,20 @@
 			,    :                  
 		}
 
-		, rtrim = /^[\x20\t\n\r\f]*|[\x20\t\n\r\f]*$/
-		, rquoted = /'[^']*?'|"[^"]*?"/gm
-		, rnoise = /\\\/|\\\/\*|\[.*?(\/|\\\/|\/\*)+.*?\]/g
-		, rtailreg = /\/[gim]*/g
-		, rregexp = /\/[^\/]*?\/[gim]*?/g
-		, rattribute = /[\x20\t\n\r\f]*\.[\x20\t\n\r\f]*[$\w\.]+/g
-		, rcomment = /\/\*(?:.|\n)*?\*\/|\/\/[^\n]*\n|\/\/[^\n]*$/g
-		, rspliter = /[^\w$]+/g
-		, rkeyword = new RegExp(       + KEYWORDS.replace(/\|/g,          ) +      ,     )
-		, rnumber = /\b\d[^,]*/g
-		, rtrimcomma = /^,+|,+$|(,)+/g
+		, rtrim =                                     
+		, rquoted =                       
+		, rnoise =                                          
+		, rtailreg =             
+		, rregexp =                       
+		, rattribute =                                             
+		, rcomment =                                                
+		, rspliter =            
+		, rkeyword = new RegExp(       + KEYWORDS.replace(                ) +      ,     )
+		, rnumber =              
+		, rtrimcomma =                 
 
-		, rassign = /=\s*([^:]+)(?::([a-zA-Z$_][\w$]*))?$/
-		, rinclude = /#include\s+('[\w$-]+'|"[\w$-]+")(\s*,\s*([a-zA-Z$_][\w$]*))?\s*$/
+		, rassign =                                        
+		, rinclude =                                                                    
 
 		, letters =                                                                 ;
 
@@ -64,7 +57,7 @@
 	}
 
 	function sprintf( str, arr ) {
-		return str.replace(/\$\{(\d+)\}/g, function( a, b ) {
+		return str.replace(                function( a, b ) {
 			return arr[b];
 		});
 	}
@@ -100,7 +93,7 @@
 
 	function die( id, source, pos, message ) {
 		var tkn = source.split( settings.openTag ),
-			line = tkn.slice( 0, pos - 1 ).join(  ).split( /\n/g ).length - 1;
+			line = tkn.slice( 0, pos - 1 ).join(  ).split(       ).length - 1;
 
 		throw new ErrorCtor({
 			name: ERROR_TYPES[id],
@@ -110,28 +103,28 @@
 		});
 	}
 
-	// extract variables to from given source code
+	                                               
 	function extract( source, filter ) {
 		var ret = {}, i = -1, p;
-		// remove all string
+		                     
 		source = source.replace( rquoted,    )
-		// remove .xxx operations
+		                          
 		.replace( rattribute,    )
-		// remove regexp qualifier
+		                           
 		.replace( rtailreg,     )
-		// remove noise regexp characters for remove comments
+		                                                      
 		.replace( rnoise,     )
-		// remove all comment safely
+		                             
 		.replace( rcomment,    )
-		// remove all regexp
+		                     
 		.replace( rregexp,    )
-		// split out variable
+		                      
 		.replace( rspliter,     )
-		// avoding define keywords
+		                           
 		.replace( rkeyword,    )
-		// remove value assignment or invalid variable
+		                                               
 		.replace( rnumber,    )
-		// remove redundant comma
+		                          
 		.replace( rtrimcomma,      );
 
 		source = source ? source.split(   ) : [];
@@ -205,24 +198,24 @@
 			}
 		}
 
-		// extract variables
+		                     
 		vars = this.vars = extract( logics, function( name ) {
 			return !refsMap.hasOwnProperty( name );
 		} );
 
 		pre = sprintf(                                                                                    , [this.dataRef, this.outRef, this.langRef, this.posRef, this.filterRef] );
 
-		// define variables
+		                    
 		for ( i in vars ) {
 			if ( vars.hasOwnProperty(i) ) {
 				body = sprintf(                         , [i, this.dataRef] ) + body;
 			}
 		}
 
-		// standard compile output
+		                           
 		this.output = sprintf(                                                                                                              , [pre, body, this.posRef, this.outRef ] );
 
-		// used for debug
+		                  
 		body = sprintf(                                   , [pre, body, this.outRef] );
 
 		try {
@@ -260,7 +253,7 @@
 		return die( 1, this.source, this.pos, message );
 	};
 
-	// default parser
+	                  
 	jst_parser = {
 		parse: function( source, compiler ) {
 			var i = -1, value, name;
@@ -268,7 +261,7 @@
 			source = source.replace( rtrim,    );
 
 			if ( source.indexOf(   ) === 0 ) {
-				// syntax validate for assignment
+				                                  
 				if ( !(value = source.match( rassign )) ) {
 					compiler.die(                                                  );
 				}
@@ -282,7 +275,7 @@
 
 				source = compiler.append( value );
 			} else if ( source.indexOf(          ) === 0 ) {
-				// syntax validate for include
+				                               
 				if ( !(value = source.match( rinclude )) ) {
 					compiler.die(                                 );
 				}
@@ -290,7 +283,7 @@
 				value = compiler.include( value[1], value[3] );
 				source = compiler.append( value );
 			} else {
-				// avoid potential syntax error
+				                                
 				source +=     ;
 			}
 
@@ -311,8 +304,8 @@
 		, lang = {
 			stringify: function( value ) {
 				return typeof value !==          ? value :
-					value.replace(/("|\\)/g,        )
-					.replace( /\r/g,       ).replace( /\n/g,       );
+					value.replace(                  )
+					.replace(              ).replace(              );
 			},
 			include: function( id, data ) {
 				return JST.render( id, data );
@@ -321,11 +314,11 @@
 		, filters = {
 			escape: function( value ) {
 				return typeof value ===          || value instanceof String ?
-					value.replace( /&/g,            )
-					.replace( /</g,           )
-					.replace( />/g,           )
-					.replace( /"/g,             )
-					.replace( /'/g,            ) : value;
+					value.replace(                  )
+					.replace(                 )
+					.replace(                 )
+					.replace(                   )
+					.replace(                  ) : value;
 			}
 		};
 
@@ -368,7 +361,7 @@
 		JST_Complier.cache = templateCache = {};
 	};
 
-	// EXPOSE API
+	              
 	if ( typeof define ===            && (define.amd || define.cmd) ) {
 		define(function() { return JST; });
 	} else {
