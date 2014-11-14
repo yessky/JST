@@ -43,6 +43,9 @@
 	JST.filter('twice', function(val) {
 		return val + val;
 	});
+	JST.filter('bold', function(val) {
+		return "<b>" + val + "</b>";
+	});
 	var data = {
 	    title: '标签"&<>',
 	    list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他'],
