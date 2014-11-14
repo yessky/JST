@@ -1,17 +1,16 @@
-# ks-template
-
-light and fast javascript template engine
+# JST
+> light and fast javascript template engine
 
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/yessky/ks-template/master/src/ks-template.js
-[max]: https://raw.github.com/yessky/ks-template/master/src/ks-template.js
+[min]: https://raw.github.com/yessky/JST/master/src/JST.js
+[max]: https://raw.github.com/yessky/JST/master/src/JST.js
 
 In your web page:
 
 ```html
-<script src="dist/ks-template.min.js"></script>
+<script src="src/JST.js"></script>
 <script>
 var data = {
 	name: 'aaron',
@@ -21,7 +20,8 @@ var tpl = 'Folloing list <%=name%>\'s hobbies!<ul>' +
 	'<%var i = -1, item;while((item=hobbies[++i])){%>' +
 	'<li><%=i%>. <%=item%></li>' +
 	'</ul>';
-var templateString = KT.render(tpl, data);
+JST.cache( 't-1', tpl );
+var templateString = JST.render( 't-1', data );
 </script>
 ```
 
