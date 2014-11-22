@@ -21,7 +21,7 @@ var tpl = 'Folloing list <%=name%>\'s hobbies!<ul>' +
 	'<li><%=i%>. <%=item%></li>' +
 	'</ul>';
 JST.cache( 't-1', tpl );
-var templateString = JST.render( 't-1', data );
+var templateString = JST( 't-1', data );
 </script>
 ```
 
